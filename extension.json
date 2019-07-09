@@ -1,9 +1,9 @@
 {
-  "name": "Cloudinary Upload",
+  "name": "Cloudinary Upload 2",
   "id": "contentful-ui-cloudinary",
   "fieldTypes": ["Object"],
-  "srcdoc": "./index.html",
-  "sidebar": true,
+  "src": "https://s3.eu-west-2.amazonaws.com/uiextensions.aceteam.tech/index.html",
+  "sidebar": false,
   "parameters": {
     "instance": [
       {
