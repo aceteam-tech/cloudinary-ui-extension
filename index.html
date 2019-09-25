@@ -19,6 +19,11 @@
 <script>
     'use strict'
 
+    function showImagePreview(cloudName, imageId){
+        const previewImage = document.getElementById('preview-img')
+        previewImage.setAttribute('src', 'https://res.cloudinary.com/'+ cloudName +'/image/upload/'+imageId)
+    }
+
     window.contentfulExtension.init(extension => {
         extension.window.startAutoResizer()
         const cloudName = extension.parameters.instance.cloud_name
@@ -26,6 +31,11 @@
         const imageIdFieldName = extension.parameters.instance.imageIdField
         const selectBtn = document.getElementById('selectBtn')
         const fileElem = document.getElementById('fileElem')
+
+        const imageId = extension.entry.fields[imageIdFieldName].getValue()
+        if(imageId){
+            showImagePreview(cloudName, imageId)
+        }
 
         fileElem.addEventListener('change', () => {
             handleFiles(fileElem.files)
@@ -64,6 +74,11 @@
                     let response = JSON.parse(xhr.responseText)
                     const imageIdField = extension.entry.fields[imageIdFieldName]
                     imageIdField.setValue(response.public_id)
+
+                    if(imageId){
+                        showImagePreview(cloudName, response.public_id)
+                    }
+
                     uploadStatus.style.color = 'green'
                     uploadStatus.innerHTML = 'Upload Successful'
                     fileElem.value = ''
