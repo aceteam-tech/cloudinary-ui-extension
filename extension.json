@@ -1,0 +1,37 @@
+{
+  "id": "cloudinary",
+  "name": "cloudinary",
+  "srcdoc": "./build/index.html",
+  "fieldTypes": [
+    "Object"
+  ],
+  "parameters": {
+    "instance": [
+      {
+        "id": "cloud_name",
+        "name": "Cloud name for Cloudinary",
+        "type": "Symbol",
+        "required": true
+      },
+      {
+        "id": "preset",
+        "name": "Preset for Cloudinary",
+        "type": "Symbol",
+        "required": true
+      },
+      {
+        "id": "breakpoints",
+        "name": "List of breakpoints",
+        "type": "Enum",
+        "options": [
+          {
+            "b": "400"
+          }, {
+            "a": "200"
+          }
+        ],
+        "required": false
+      }
+    ]
+  }
+}
