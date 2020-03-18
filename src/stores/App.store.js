@@ -1,12 +1,12 @@
 import { observable, computed } from 'mobx'
-import {v4} from 'uuid'
+import { v4 } from 'uuid'
 
 class Image {
     @observable id
     @observable breakpoint
     @observable url
 
-    constructor({breakpoint = 0, url = ''}, onSave) {
+    constructor({ breakpoint = 0, url = '' }, onSave) {
         this.breakpoint = breakpoint
         this.url = url
         this.onSave = onSave
@@ -18,7 +18,7 @@ class Image {
         this.onSave()
     }
 
-    onUpload = ({url}) => {
+    onUpload = ({ url }) => {
         this.url = url
         this.onSave()
     }
@@ -31,7 +31,12 @@ class AppStore {
 
     constructor(field) {
         this._field = field
-        this.images = field.getValue().map(image => new Image(image, this.onSave))
+        console.log({ 'field.getValue()': field.getValue() })
+        const fieldValue = field.getValue()
+
+        this.images = fieldValue ?
+            fieldValue.map(image => new Image(image, this.onSave)) :
+            [new Image({breakpoint: ''}, this.onSave)]
     }
 
     @computed get defaultImage() {
@@ -55,4 +60,5 @@ class AppStore {
         this.onSave()
     }
 }
+
 export default AppStore

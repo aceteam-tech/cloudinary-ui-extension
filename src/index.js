@@ -19,7 +19,7 @@ import {
 } from "@contentful/forma-36-react-components"
 import Image from './components/Image/Image'
 import AppStore from './stores/App.store'
-import {observer} from 'mobx-react'
+import { observer } from 'mobx-react'
 
 class Breakpoint {
     value = 0
@@ -40,7 +40,7 @@ class App extends React.Component {
             activeTab: 'first',
             loader: false
         }
-        console.log({'props.sdk.field': props.sdk.field.getValue()});
+        console.log({ 'props.sdk': props.sdk })
         this.appStore = new AppStore(props.sdk.field)
     }
 
@@ -69,7 +69,7 @@ class App extends React.Component {
     }
 
     render() {
-        const {cloud_name, preset} = this.props.sdk.parameters.instance
+        const { cloud_name, preset } = this.props.sdk.parameters.instance
         return (
             <>
                 <Note noteType="primary">
